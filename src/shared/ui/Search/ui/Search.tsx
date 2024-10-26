@@ -11,8 +11,8 @@ export const Search: FC<ISearchProps> = (props) => {
         placeholder,
     } = props;
 
-    const [ value, setValue ] = useState('');
-    const [ variables, setVariables ] = useState<string[]>([]);
+    const [ value, setValue ] = useState('rain_sum, snowfall_sum');
+    const [ variables, setVariables ] = useState<string[]>(['rain_sum','snowfall_sum']);
     const [ suggestions, setSuggestions ] = useState<string[]>([]);
     
     const inputRef = useRef<HTMLInputElement>(null);
@@ -43,7 +43,7 @@ export const Search: FC<ISearchProps> = (props) => {
     }, [variables]);
 
     const handleSuggestionClick = (suggestion: string) => {
-        // Получаем последние слова, разделенные пробелами
+        // Получаем слова, разделенные пробелами
         const words = value.split(/\s+/);
 
         // Заменяем последнее слово на выбранный тег

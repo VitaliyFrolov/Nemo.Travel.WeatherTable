@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import styles from './WeatherTable.module.scss';
-import { Cell } from '../../../shared/ui/Cell';
 import { IWeatherTableProps } from '../types/props';
 
 export const WeatherTable: FC<IWeatherTableProps> = (props) => {
@@ -32,10 +31,16 @@ export const WeatherTable: FC<IWeatherTableProps> = (props) => {
             <tbody>
                 {data?.daily.time.map((date: string, index: number) => (
                     <tr key={date}> 
-                        <Cell>{date}</Cell>
+                        <td className={styles.cell}>{date}</td>
                         {/* TODO: исправить типы */}
                         {variables.map((variable: string | null) => (
-                            data.daily[variable] && <Cell key={variable}>{data.daily[variable][index]}</Cell>
+                            data.daily[variable] &&
+                            <td 
+                                className={styles.cell}
+                                key={variable}
+                            >
+                                {data.daily[variable][index]}
+                            </td>
                         ))}
                     </tr>
                 ))}

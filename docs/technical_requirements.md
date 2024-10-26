@@ -8,4 +8,4 @@
 7. Husky: прехук проверяющий код на соответствие кодстайлу
 8. nginx: вебсервер
 9. Docker: контейнеризация
-10. github ci: реализая CI через github actions
+10. Github ci: реализая CI через github actions

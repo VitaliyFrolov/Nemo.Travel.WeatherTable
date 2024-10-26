@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Container } from '../../../shared/ui/Container';
 import { Search } from '../../../shared/ui/Search';
-import { WeatherTable } from '../../../widgets/Weather';
+import { WeatherTable } from '../../../widgets/WeatherTable';
 import { getWeather, WeatherData } from '../../../entities/weather';
 
 const MainPage = () => {
@@ -15,7 +15,9 @@ const MainPage = () => {
 
     // Реализовываем запрос на API
     useEffect(() => {
-        getWeather(variables).then((data) => setWeather(data));
+        getWeather(variables)
+            .then((data) => setWeather(data))
+            .catch(error => new Error("Ошибка при получении данных:", error));
     }, [variables]);
 
     return (
