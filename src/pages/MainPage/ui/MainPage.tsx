@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { Container } from "../../../shared/ui/Container";
-import { Search } from "../../../shared/ui/Search";
-import { WeatherTable } from "../../../widgets/Weather";
-import { getWeather, WeatherData } from "../../../entities/weather";
+import { useEffect, useState } from 'react';
+import { Container } from '../../../shared/ui/Container';
+import { Search } from '../../../shared/ui/Search';
+import { WeatherTable } from '../../../widgets/Weather';
+import { getWeather, WeatherData } from '../../../entities/weather';
 
 const MainPage = () => {
     const [ weather, setWeather ] = useState<WeatherData>();
