@@ -9,6 +9,8 @@ export const WeatherTable: FC<IWeatherTableProps> = (props) => {
         variables = [],
     } = props;
 
+    console.log(data);
+
     if (!data || !data.daily) {
         return <div>Нет данных о погоде</div>;
     };
@@ -30,10 +32,11 @@ export const WeatherTable: FC<IWeatherTableProps> = (props) => {
                 </tr>
             </thead>
             <tbody>
-                {data?.daily.time.map((date: any, index: number) => (
+                {data?.daily.time.map((date: string, index: number) => (
                     <tr key={date}> 
                         <Cell>{date}</Cell>
-                        {variables.map((variable: string) => (
+                        {/* TODO: исправить типы */}
+                        {variables.map((variable: string | null) => (
                             data.daily[variable] && <Cell key={variable}>{data.daily[variable][index]}</Cell>
                         ))}
                     </tr>

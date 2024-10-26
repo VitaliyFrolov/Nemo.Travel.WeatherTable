@@ -1,5 +1,6 @@
+import { WeatherData } from "../../../entities/weather";
+
 export interface IWeatherTableProps {
-   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-   data?: any;
+   data?: WeatherData | null;
    variables?: string[];
 };
