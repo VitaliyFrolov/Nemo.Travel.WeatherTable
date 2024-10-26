@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FC } from 'react';
-import { availableVariables } from '../../../../entities/weather';
+import { weatherVariables } from '../../../../entities/weather';
 import { ISearchProps } from '../type/props';
 import { AutocompleteMenu } from '../../../../features/autocomplete';
 import styles from './Search.module.scss';
@@ -17,7 +17,7 @@ export const Search: FC<ISearchProps> = (props) => {
 
     // Отслеживаем наличие тегов в инпуте
     useEffect(() => {
-        const selectedVariables = availableVariables.filter(variable => value.includes(variable));
+        const selectedVariables = weatherVariables.filter(variable => value.includes(variable));
         setVariables(selectedVariables);
 
         // Получаем последнее слово из введенного текста
@@ -26,7 +26,7 @@ export const Search: FC<ISearchProps> = (props) => {
         // Генерируем предложку
         if (lastWord) {
             // Фильтруем предложку, исключая уже выбранные переменные
-            const filteredSuggestions = availableVariables.filter(variable => 
+            const filteredSuggestions = weatherVariables.filter(variable => 
                 variable.startsWith(lastWord) && !variables.includes(variable)
             );
             setSuggestions(filteredSuggestions);

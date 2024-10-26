@@ -1,4 +1,4 @@
-export const variables = [
+export const weatherVariables = [
     'rain_sum',
     'snowfall_sum',
     'weathercode',
