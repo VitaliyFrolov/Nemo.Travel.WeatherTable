@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { FC } from 'react';
+import { availableVariables } from '../../../../entities/weather';
 import { ISearchProps } from '../type/props';
-import { availableValues, useValidVariables } from '../../../../entities/weather';
-import { AutocompleteMenu, useAutocomplete } from '../../../../features/autocomplete'; 
+import { AutocompleteMenu } from '../../../../features/autocomplete';
 import styles from './Search.module.scss';
 
 export const Search: FC<ISearchProps> = (props) => {
@@ -13,27 +13,45 @@ export const Search: FC<ISearchProps> = (props) => {
 
     const [ value, setValue ] = useState('');
     const [ variables, setVariables ] = useState<string[]>([]);
-    console.log(variables);
+    const [ suggestions, setSuggestions ] = useState<string[]>([]);
 
-    // Получаем функции для управления предложениями
-    const { suggestions, handleInputChange } = useAutocomplete({
-        availableValues, 
-        variables,
-        setValue,
-    });
-
-    // Получаем функции для управления переменными
-    const { handleSuggestionClick } = useValidVariables({
-        availableValues, 
-        variables,
-        setValue, 
-        setVariables,
-        value
-    });
-
+    // Отслеживаем наличие тегов в инпуте
     useEffect(() => {
-        handleData(variables)
-    }, [variables, handleData]);
+        const selectedVariables = availableVariables.filter(variable => value.includes(variable));
+        setVariables(selectedVariables);
+
+        // Получаем последнее слово из введенного текста
+        const lastWord = value.split(/\s+/).pop();
+
+        // Генерируем предложку
+        if (lastWord) {
+            // Фильтруем предложку, исключая уже выбранные переменные
+            const filteredSuggestions = availableVariables.filter(variable => 
+                variable.startsWith(lastWord) && !variables.includes(variable)
+            );
+            setSuggestions(filteredSuggestions);
+        } else {
+            setSuggestions([]);
+        }
+    }, [value]);
+
+    // При изменении variables кладем их в коллбэк функцию
+    useEffect(() => {
+        handleData(variables);
+    }, [variables]);
+
+    const handleSuggestionClick = (suggestion: string) => {
+        // Получаем последние слова, разделенные пробелами
+        const words = value.split(/\s+/);
+
+        // Заменяем последнее слово на выбранный тег
+        words[words.length - 1] = suggestion;
+
+        // Соединяем слова обратно с пробелами
+        setValue(words.join(' '));
+
+        setSuggestions([]); 
+    };
 
     return (
         <div>
@@ -42,10 +60,10 @@ export const Search: FC<ISearchProps> = (props) => {
                 type="text" 
                 placeholder={placeholder} 
                 value={value} 
-                onChange={handleInputChange}
+                onChange={(e) => setValue(e.target.value)}
             />
             {suggestions.length > 0 && (
-                <AutocompleteMenu
+                <AutocompleteMenu 
                     suggestions={suggestions}
                     handleSuggestionClick={handleSuggestionClick}
                 />

@@ -1,4 +1,3 @@
 export { getWeather } from './api/getWeather';
-export { variables as availableValues } from './model/variables';
+export { variables as availableVariables } from './model/variables';
 export type { WeatherData } from './type/data';
-export { useValidVariables } from './hook/useValidVariables';
