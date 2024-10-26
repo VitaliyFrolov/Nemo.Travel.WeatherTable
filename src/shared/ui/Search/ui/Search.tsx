@@ -1,4 +1,5 @@
-import { FC, useEffect, useState } from 'react';
+import { useState, useEffect} from 'react';
+import { FC } from 'react';
 import { ISearchProps } from '../type/props';
 import { availableValues } from '../../../../entities/weather';
 import { AutocompleteMenu, useAutocomplete } from '../../../../features/autocomplete';
@@ -18,24 +19,28 @@ export const Search: FC<ISearchProps> = (props) => {
         variables,
         setValue,
         setVariables,
+        value
     });
 
     useEffect(() => {
         handleData(variables)
-    }, [variables]);
+    }, [variables, handleData]);
 
-    return (
-        <div> 
-            <input
-                className={styles.input}
-                value={value}
-                onChange={handleInputChange} 
-                placeholder={placeholder}
+  return (
+    <div>
+        <input 
+            className={styles.input}
+            type="text" 
+            placeholder={placeholder} 
+            value={value} 
+            onChange={handleInputChange}
+        />
+        {suggestions.length > 0 && (
+            <AutocompleteMenu
+            suggestions={suggestions}
+            handleSuggestionClick={handleSuggestionClick}
             />
-            <AutocompleteMenu 
-              suggestions={suggestions} 
-              handleSuggestionClick={handleSuggestionClick}
-            />
-        </div>
-    );
+        )}
+    </div>
+  );
 };
