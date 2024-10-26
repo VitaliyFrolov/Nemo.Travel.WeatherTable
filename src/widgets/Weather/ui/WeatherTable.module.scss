@@ -1,0 +1,16 @@
+.table {
+    width: 100%;
+    border-collapse: collapse;
+  
+    .cell {
+        padding: 10px;
+        text-align: left;
+        border: 1px solid #ddd;
+        
+        &_title {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            border: 1px solid #ddd;
+        }
+    }
+}
