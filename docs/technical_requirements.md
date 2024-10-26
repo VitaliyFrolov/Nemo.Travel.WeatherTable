@@ -6,7 +6,6 @@
 5. Vitest + React Testing Library: тестирование
 6. ESLint + editorconfig: кодстайл
 7. Husky: прехук проверяющий код на соответствие кодстайлу
-8. Storybook: ui-kit
-9. nginx: вебсервер
-10. Docker: контейнеризация
-11. github ci: реализая CI через github actions
+8. nginx: вебсервер
+9. Docker: контейнеризация
+10. github ci: реализая CI через github actions
