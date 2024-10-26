@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { FC } from 'react';
 import { weatherVariables } from '../../../../entities/weather';
 import { ISearchProps } from '../type/props';
@@ -14,6 +14,8 @@ export const Search: FC<ISearchProps> = (props) => {
     const [ value, setValue ] = useState('');
     const [ variables, setVariables ] = useState<string[]>([]);
     const [ suggestions, setSuggestions ] = useState<string[]>([]);
+    
+    const inputRef = useRef<HTMLInputElement>(null);
 
     // Отслеживаем наличие тегов в инпуте
     useEffect(() => {
@@ -35,7 +37,7 @@ export const Search: FC<ISearchProps> = (props) => {
         }
     }, [value]);
 
-    // При изменении variables кладем их в коллбэк функцию
+    // При изменении variables кладем массив в коллбэк
     useEffect(() => {
         handleData(variables);
     }, [variables]);
@@ -49,13 +51,16 @@ export const Search: FC<ISearchProps> = (props) => {
 
         // Соединяем слова обратно с пробелами
         setValue(words.join(' '));
-
         setSuggestions([]); 
+
+        // Устанавливаем фокус обратно в инпут после изменения
+        inputRef.current && inputRef.current.focus(); 
     };
 
     return (
         <div>
             <input 
+                ref={inputRef} // Привязываем ref к инпуту
                 className={styles.input}
                 type="text" 
                 placeholder={placeholder} 
