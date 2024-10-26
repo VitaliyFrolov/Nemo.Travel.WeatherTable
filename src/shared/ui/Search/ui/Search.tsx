@@ -13,7 +13,7 @@ export const Search: FC<ISearchProps> = (props) => {
     const [ value, setValue ] = useState('');
     const [ variables, setVariables ] = useState<string[]>([]);
 
-    const { suggestions, handleInputChange } = useAutocomplete({
+    const { suggestions, handleInputChange, handleSuggestionClick } = useAutocomplete({
         availableValues, 
         variables,
         setValue,
@@ -32,7 +32,10 @@ export const Search: FC<ISearchProps> = (props) => {
                 onChange={handleInputChange} 
                 placeholder={placeholder}
             />
-            <AutocompleteMenu suggestions={suggestions} />
+            <AutocompleteMenu 
+              suggestions={suggestions} 
+              handleSuggestionClick={handleSuggestionClick}
+            />
         </div>
     );
 };

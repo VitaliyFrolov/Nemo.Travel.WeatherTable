@@ -13,11 +13,11 @@ export const useAutocomplete = ({
     setValue, 
     setVariables
 }: IUseAutocompleteProps) => {
-    
+  
     const [ suggestions, setSuggestions ] = useState<string[]>([]);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newTag: string = e.target.value;
+    const newTag: string = e.target.value;
 
         // Обновляем список предложений только если введено что-то
         if (newTag.length > 0) {
@@ -32,18 +32,30 @@ export const useAutocomplete = ({
 
         // Проверяем, есть ли новое значение
         if (availableValues.includes(newTag)) {
-            // Если да, то добавляем в variables
+        // Если да, то добавляем в variables
             setVariables([...variables, newTag]);
         } else {
-            // Если нет, то удаляем из variables
+        // Если нет, то удаляем из variables
             setVariables(variables.filter(tag => tag !== newTag)); 
         }
 
         setValue(newTag);
     };
 
+    const handleSuggestionClick = (suggestion: string) => {
+        // Устанавливаем выбранное значение в инпут
+        setValue(suggestion); 
+
+        // Добавляем выбранное значение в variables
+        setVariables([...variables, suggestion]);
+
+        // Сбрасываем предложения
+        setSuggestions([]); 
+    };
+
     return {
         suggestions,
-        handleInputChange
+        handleInputChange,
+        handleSuggestionClick
     };
 };

@@ -13,6 +13,10 @@ export const WeatherTable: FC<IWeatherTableProps> = (props) => {
         return <div>Нет данных о погоде</div>;
     };
 
+    if (variables.length === 0) {
+        return <div>Введите значение</div>
+    };
+
     return (
         <table className={styles.table}>
             <thead>
