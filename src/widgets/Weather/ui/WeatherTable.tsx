@@ -9,8 +9,6 @@ export const WeatherTable: FC<IWeatherTableProps> = (props) => {
         variables = [],
     } = props;
 
-    console.log(data);
-
     if (!data || !data.daily) {
         return <div>Нет данных о погоде</div>;
     };
