@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import styles from './WeatherTable.module.scss';
 import { IWeatherTableProps } from '../types/props';
-import { WeatherData } from '../../../entities/weather';
+import { WeatherData } from '../../../../entities/weather';
 
 export const WeatherTable: FC<IWeatherTableProps<WeatherData>> = (props) => {
     const { 

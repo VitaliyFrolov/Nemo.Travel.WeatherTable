@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Container } from '../../../shared/ui/Container';
 import { Search } from '../../../shared/ui/Search';
-import { WeatherTable } from '../../../widgets/WeatherTable';
+import { WeatherTable } from '../../../shared/ui/WeatherTable';
 import { getWeather, WeatherData } from '../../../entities/weather';
 
 const MainPage = () => {
