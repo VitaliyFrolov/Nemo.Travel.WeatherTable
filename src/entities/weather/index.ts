@@ -1,3 +1,3 @@
 export { getWeather } from './api/getWeather';
-export { variables as availableValues } from './model/variables';
-export type { weatherData } from './type/data';
+export { weatherVariables } from './model/variables';
+export type { IWeatherData, IDailyWeather } from './type/data';

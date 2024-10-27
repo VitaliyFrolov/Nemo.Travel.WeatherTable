@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import { Container } from "../../../shared/ui/Container";
-import { Search } from "../../../shared/ui/Search";
-import { WeatherTable } from "../../../widgets/Weather";
-import { getWeather } from "../../../entities/weather";
+import { useEffect, useState } from 'react';
+import { Container } from '../../../shared/ui/Container';
+import { Search } from '../../../shared/ui/Search';
+import { WeatherTable } from '../../../shared/ui/WeatherTable';
+import { getWeather, IWeatherData } from '../../../entities/weather';
 
 const MainPage = () => {
-    const [ weather, setWeather ] = useState<any>();
+    const [ weather, setWeather ] = useState<IWeatherData>();
     const [ variables, setVariables ] = useState<string[]>([]);
 
     // Получаем данные из инпута
@@ -15,13 +15,15 @@ const MainPage = () => {
 
     // Реализовываем запрос на API
     useEffect(() => {
-        getWeather(variables).then((data) => setWeather(data));
+        getWeather(variables)
+            .then((data) => setWeather(data))
+            .catch(error => new Error("Ошибка при получении данных:", error));
     }, [variables]);
 
     return (
         <Container>
             <Search
-                handleData={handleVariables}
+                handleVariables={handleVariables}
                 placeholder='Поиск...'
             />
             <WeatherTable

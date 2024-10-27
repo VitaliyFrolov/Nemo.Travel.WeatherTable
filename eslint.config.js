@@ -46,7 +46,6 @@ module.exports = tseslint.config(
   {
     files: ['**/*.{ts,tsx}'],
     rules: {
-      "no-unused-vars": "warn",
       "no-alert": "warn",
       "no-console": "warn",
       "no-var": "error",
