@@ -23,7 +23,7 @@ const MainPage = () => {
     return (
         <Container>
             <Search
-                handleData={handleVariables}
+                handleVariables={handleVariables}
                 placeholder='Поиск...'
             />
             <WeatherTable

@@ -7,7 +7,7 @@ import styles from './Search.module.scss';
 
 export const Search: FC<ISearchProps> = (props) => {
     const {
-        handleData,
+        handleVariables,
         placeholder,
     } = props;
 
@@ -39,7 +39,7 @@ export const Search: FC<ISearchProps> = (props) => {
 
     // При изменении variables кладем массив в коллбэк
     useEffect(() => {
-        handleData(variables);
+        handleVariables(variables);
     }, [variables]);
 
     const handleSuggestionClick = (suggestion: string) => {

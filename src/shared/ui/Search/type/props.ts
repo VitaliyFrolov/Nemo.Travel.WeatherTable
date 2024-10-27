@@ -1,4 +1,4 @@
 export interface ISearchProps {
-    handleData: (variables: string[]) => void;
+    handleVariables: (variables: string[]) => void;
     placeholder?: string;
 };
