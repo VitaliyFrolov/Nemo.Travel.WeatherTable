@@ -92,3 +92,8 @@ useEffect(() => {
 В файле App.tsx необходимо убрать лишние импорты, а именно:
 - React
 -  './App.css'
+
+
+## Для запуска можно воспользоваться
+- `yarn dev` или `make build dev` - dev режим
+- `yarn build`, `yarn start` или `make prod-up` - prod режим
