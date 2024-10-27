@@ -15,7 +15,7 @@ showers_sum, snowfall_sum, precipitation_hours, windspeed_10m_max, windgusts_10m
 
 ## Логические ошибки
 ### 1.
-```
+```tsx
 useEffect(() => {
     fetch(`https://api.open-meteo.com/v1/forecast?latitude=${props.lat}&longitude=${props.long}&daily=${props.variables.join(',')}&timezone=Europe/Moscow&past_days=0`, {method: 'GET'}).then(resp => {
         setWeather(resp.json())
@@ -25,7 +25,7 @@ useEffect(() => {
 В файле "Weather.tsx" при обработке запроса первый .then() с resp.json() гарантирует, что json() вызывается после того, как fetch вернет ответ. Второй же .then() мы можем использовать для получения данных после парсинга JSON, и только после этого можем передать значение в стейт. Также стоит обратить внимание на обработку ошибок при помощи .catch(). Хорошей практикой является вынесение логики, связанной с запросом, из компонента, например, в папку с названием api. Это сделает наш код более декларативным.
 
 ### 2. 
-```
+```tsx
 <input type="text" onInput={e => {
     variables.push((e.target as HTMLInputElement).value)
 }}/>
@@ -46,7 +46,7 @@ useEffect(() => {
 ### 1. 
 Файл Weather.tsx
 Нарушена вложенность тегов.
-```
+```tsx
  return <table style={{width: '100%'}}>
         <thead>
         <tr>
@@ -73,7 +73,7 @@ useEffect(() => {
 ```
 ### 2.
 Файл Weather.tsx
-```
+```tsx
 <tr>
     <td>date</td>
     {props.variables.map(variable => <td>{variable}</td>)}
@@ -81,17 +81,26 @@ useEffect(() => {
 ```
 Для обозначения заголовка таблицы существует тег `<th>`
 
+### 3.
+```tsx
+[props.variables]
+```
+Отсутствие деструктуризации объекта props может затруднить читаемость кода.
+Пример деструктуризации:
+```tsx
+const = {
+    variables,
+    ...
+    ...
+} = props;
+```
+
 ## Другие ошибки
 ### 1. 
 Файл App.tsx
 В файле Weather.tsx присутствует директива
 `/* tslint:disable */`, которая отключает typescript linter в данном файле. А так же `@ts-nocheck` отключает проверку типов для всего файла.
 Следовательно мы лишаем себя всех плюсов строгой типизации и можем обходить как аннатацию типов, так и встроенный линтер языка, что в свою очередь приводит к ошибкам.
-
-### 2.
-В файле App.tsx необходимо убрать лишние импорты, а именно:
-- React
--  './App.css'
 
 
 ## Для запуска можно воспользоваться
