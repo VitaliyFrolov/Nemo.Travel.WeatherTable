@@ -17,6 +17,8 @@ export interface IDailyWeather {
     winddirection_10m_dominant?: number[];
     shortwave_radiation_sum?: number[];
     et0_fao_evapotranspiration?: number[];
+
+    [key: string]: number[] | string[] | undefined;
 }
 
 export interface IWeatherData {

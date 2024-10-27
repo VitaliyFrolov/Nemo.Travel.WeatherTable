@@ -1,4 +1,4 @@
-import { IWeatherData } from "../../../entities/weather/type/data";
+import { IWeatherData } from "../../../../entities/weather";
 
 export interface IWeatherTableProps<T extends IWeatherData> {
    data?: T;

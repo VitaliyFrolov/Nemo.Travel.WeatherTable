@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { Container } from '../../../shared/ui/Container';
 import { Search } from '../../../shared/ui/Search';
 import { WeatherTable } from '../../../shared/ui/WeatherTable';
-import { getWeather, WeatherData } from '../../../entities/weather';
+import { getWeather, IWeatherData } from '../../../entities/weather';
 
 const MainPage = () => {
-    const [ weather, setWeather ] = useState<WeatherData>();
+    const [ weather, setWeather ] = useState<IWeatherData>();
     const [ variables, setVariables ] = useState<string[]>([]);
 
     // Получаем данные из инпута
