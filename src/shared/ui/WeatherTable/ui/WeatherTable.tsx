@@ -38,7 +38,7 @@ export const WeatherTable: FC<IWeatherTableProps<IWeatherData>> = (props) => {
                                 className={styles.cell}
                                 key={variable}
                             >
-                                {data.daily[variable]?.[index] ?? null} 
+                                {`${data.daily[variable]?.[index]} ${data.daily_units[variable]}`}
                             </td>
                         ))}
                     </tr>
