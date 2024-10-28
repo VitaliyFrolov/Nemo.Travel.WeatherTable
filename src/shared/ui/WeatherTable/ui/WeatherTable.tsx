@@ -2,6 +2,7 @@ import { FC } from 'react';
 import styles from './WeatherTable.module.scss';
 import { IWeatherTableProps } from '../types/props';
 import { IWeatherData } from '../../../../entities/weather';
+import { titleInterpretation } from '../../../../features/titleInterpretation';
 
 export const WeatherTable: FC<IWeatherTableProps<IWeatherData>> = (props) => {
     const { 
@@ -21,10 +22,10 @@ export const WeatherTable: FC<IWeatherTableProps<IWeatherData>> = (props) => {
         <table className={styles.table}>
             <thead>
                 <tr>
-                    <th className={styles.cell_title}>date</th>
+                    <th className={styles.cell_title}>Date</th>
                     {variables.map((item) => (
                         <th className={styles.cell_title} key={item}>
-                            {item}
+                            {titleInterpretation(item)}
                         </th>
                     ))}
                 </tr>
