@@ -72,7 +72,7 @@ jobs:
         run: yarn run test
 
   docker-build:
-    name: Build
+    name: Docker Image Build
     needs: packages
     runs-on: ubuntu-latest
     steps:
