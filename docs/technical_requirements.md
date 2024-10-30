@@ -23,3 +23,5 @@
 3. Запрос на API находится в `entities/weather/api`, представляет из себя асинхронную функцию, которая возвращает ответ сервера.
 
 4. Также все возможные переменные, необходимые для запроса были вынесены в массив. `entities/weather/model`.
+
+Deploy to github-pages: https://vitaliyfrolov.github.io/Nemo.Travel.WeatherTable/
